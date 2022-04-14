@@ -1,0 +1,38 @@
+<!--
+  The code w3.html must be in folder called templates to work
+-->
+<html>
+   <body>
+      <form id="myform" method="GET">
+         <p>My Restful flask Calculator:</p>
+         <pre>
+           First Number  <input type = "text" id = "fnm" />
+           Second Number <input type = "text" id = "snm" />
+           Total         <input type = "text" id = "tnm" />
+         </pre>
+         <p>
+            <input type = "button" id="add" value = " + "  onclick="doAct(id)"/>
+            <input type = "button" id="sub" value = " - "  onclick="doAct(id)"/>
+             <input type = "button" id="mul" value = " * "  onclick="doAct(id)"/>
+            <input type = "button" id="div" value = " / "  onclick="doAct(id)"/>
+             <input type = "button" id="allInOneDict" value = " allInOneDict "  onclick="doAct(id)"/>
+            <input type = "button" id="allinOneList" value = " allinOneList "  onclick="doAct(id)"/>
+         </p>
+      </form>
+   </body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+function doAct(lid)
+{
+    fnum=document.getElementById("fnm").value
+    snum=document.getElementById("snm").value
+    myform.action="http://127.0.0.1:5200/mycalc/"+lid+"/"+fnum+"/"+snum+"/"
+        $.get(myform.action, function(data, status){
+                    alert("Data: " + data + "\nStatus: " + status);
+                    alert(status);
+                    alert(data)
+                    document.getElementById("tnm").innerHTML=data
+    })
+}
+</script>
